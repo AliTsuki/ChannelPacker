@@ -15,7 +15,7 @@ namespace ChannelPacker
         /// <summary>
         /// Contains all the map images used in creating a mask map.
         /// </summary>
-        private readonly Dictionary<Map.MapType, Map> MaskMaps = new Dictionary<Map.MapType, Map>
+        private Dictionary<Map.MapType, Map> MaskMaps = new Dictionary<Map.MapType, Map>
         {
             { Map.MapType.Metallic, new Map(null, Map.MapType.Metallic) },
             { Map.MapType.Roughness, new Map(null, Map.MapType.Roughness) },
@@ -26,7 +26,7 @@ namespace ChannelPacker
         /// <summary>
         /// Contains all the map images used in creating a color map with opacity in the alpha channel.
         /// </summary>
-        private readonly Dictionary<Map.MapType, Map> OpacityMaps = new Dictionary<Map.MapType, Map>
+        private Dictionary<Map.MapType, Map> OpacityMaps = new Dictionary<Map.MapType, Map>
         {
             { Map.MapType.Color, new Map(null, Map.MapType.Color) },
             { Map.MapType.Opacity, new Map(null, Map.MapType.Opacity) }
@@ -73,6 +73,18 @@ namespace ChannelPacker
         private void InitializeValues()
         {
             this.MapsLoaded.Clear();
+            this.MaskMaps = new Dictionary<Map.MapType, Map>
+            {
+                { Map.MapType.Metallic, new Map(null, Map.MapType.Metallic) },
+                { Map.MapType.Roughness, new Map(null, Map.MapType.Roughness) },
+                { Map.MapType.AO, new Map(null, Map.MapType.AO) },
+                { Map.MapType.Detail_Mask, new Map(null, Map.MapType.Detail_Mask) }
+            };
+            this.OpacityMaps = new Dictionary<Map.MapType, Map>
+            {
+                { Map.MapType.Color, new Map(null, Map.MapType.Color) },
+                { Map.MapType.Opacity, new Map(null, Map.MapType.Opacity) }
+            };
             this.ChannelPackedImage = null;
             this.width = 0;
             this.height = 0;
@@ -410,6 +422,16 @@ namespace ChannelPacker
         private void GenerateColorMapButton_Click(object sender, EventArgs e)
         {
             this.GenerateChannelPackedMap(OperationType.Opacity);
+        }
+
+        /// <summary>
+        /// Called when the Reset button is pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            this.InitializeValues();
         }
     }
 

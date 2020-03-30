@@ -46,6 +46,7 @@
             this.GenerateColorMapButton = new System.Windows.Forms.Button();
             this.SelectOpacityMapButton = new System.Windows.Forms.Button();
             this.SelectColorMapButton = new System.Windows.Forms.Button();
+            this.ResetButton = new System.Windows.Forms.Button();
             this.MaskMapGroupBox.SuspendLayout();
             this.OpacityGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -222,11 +223,22 @@
             this.SelectColorMapButton.UseVisualStyleBackColor = true;
             this.SelectColorMapButton.Click += new System.EventHandler(this.SelectColorMapButton_Click);
             // 
+            // ResetButton
+            // 
+            this.ResetButton.Location = new System.Drawing.Point(18, 413);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(129, 26);
+            this.ResetButton.TabIndex = 5;
+            this.ResetButton.Text = "Reset";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
             // ChannelPacker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 405);
+            this.ClientSize = new System.Drawing.Size(719, 462);
+            this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.OpacityGroupBox);
             this.Controls.Add(this.MaskMapGroupBox);
             this.Name = "ChannelPacker";
@@ -259,6 +271,7 @@
         private System.Windows.Forms.Button GenerateColorMapButton;
         private System.Windows.Forms.Button SelectOpacityMapButton;
         private System.Windows.Forms.Button SelectColorMapButton;
+        private System.Windows.Forms.Button ResetButton;
     }
 }
 
