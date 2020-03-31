@@ -113,37 +113,55 @@ namespace ChannelPacker
                     {
                         case Map.MapType.Metallic:
                         {
-                            this.MaskMaps[Map.MapType.Metallic].Bitmap = new Bitmap(this.OpenFileDialog.FileName);
+                            using(Bitmap bmpTemp = new Bitmap(this.OpenFileDialog.FileName))
+                            {
+                                this.MaskMaps[Map.MapType.Metallic].Bitmap = new Bitmap(bmpTemp);
+                            }
                             this.MetallicMapLabel.Text = this.OpenFileDialog.SafeFileName;
                             break;
                         }
                         case Map.MapType.Roughness:
                         {
-                            this.MaskMaps[Map.MapType.Roughness].Bitmap = new Bitmap(this.OpenFileDialog.FileName);
+                            using(Bitmap bmpTemp = new Bitmap(this.OpenFileDialog.FileName))
+                            {
+                                this.MaskMaps[Map.MapType.Roughness].Bitmap = new Bitmap(bmpTemp);
+                            }
                             this.RoughnessMapLabel.Text = this.OpenFileDialog.SafeFileName;
                             break;
                         }
                         case Map.MapType.AO:
                         {
-                            this.MaskMaps[Map.MapType.AO].Bitmap = new Bitmap(this.OpenFileDialog.FileName);
+                            using(Bitmap bmpTemp = new Bitmap(this.OpenFileDialog.FileName))
+                            {
+                                this.MaskMaps[Map.MapType.AO].Bitmap = new Bitmap(bmpTemp);
+                            }
                             this.AOMapLabel.Text = this.OpenFileDialog.SafeFileName;
                             break;
                         }
                         case Map.MapType.Detail_Mask:
                         {
-                            this.MaskMaps[Map.MapType.Detail_Mask].Bitmap = new Bitmap(this.OpenFileDialog.FileName);
+                            using(Bitmap bmpTemp = new Bitmap(this.OpenFileDialog.FileName))
+                            {
+                                this.MaskMaps[Map.MapType.Detail_Mask].Bitmap = new Bitmap(bmpTemp);
+                            }
                             this.DetailMaskMapLabel.Text = this.OpenFileDialog.SafeFileName;
                             break;
                         }
                         case Map.MapType.Color:
                         {
-                            this.OpacityMaps[Map.MapType.Color].Bitmap = new Bitmap(this.OpenFileDialog.FileName);
+                            using(Bitmap bmpTemp = new Bitmap(this.OpenFileDialog.FileName))
+                            {
+                                this.OpacityMaps[Map.MapType.Color].Bitmap = new Bitmap(bmpTemp);
+                            }
                             this.ColorMapLabel.Text = this.OpenFileDialog.SafeFileName;
                             break;
                         }
                         case Map.MapType.Opacity:
                         {
-                            this.OpacityMaps[Map.MapType.Opacity].Bitmap = new Bitmap(this.OpenFileDialog.FileName);
+                            using(Bitmap bmpTemp = new Bitmap(this.OpenFileDialog.FileName))
+                            {
+                                this.OpacityMaps[Map.MapType.Opacity].Bitmap = new Bitmap(bmpTemp);
+                            }
                             this.OpacityMapLabel.Text = this.OpenFileDialog.SafeFileName;
                             break;
                         }
@@ -171,14 +189,14 @@ namespace ChannelPacker
             // If channel packed image was created, save image to file as jpg
             if(this.ChannelPackedImage != null)
             {
-                this.SaveFileDialog.Filter = "JPG Image (*.JPG, *.jpg, *.JPEG, *.jpeg)|";
+                this.SaveFileDialog.Filter = "PNG Image (*.PNG, *.png)|";
                 this.SaveFileDialog.Title = "Save Channel Packed Map...";
                 Match match = Regex.Match(this.OpenFileDialog.SafeFileName, "^(.*)_");
-                this.SaveFileDialog.FileName = match.Value + (type == OperationType.Mask ? "MaskMap.jpg" : "Color.jpg");
+                this.SaveFileDialog.FileName = match.Value + (type == OperationType.Mask ? "MaskMap.png" : "ColorWithOpacity.png");
                 DialogResult result = this.SaveFileDialog.ShowDialog();
                 if(result == DialogResult.OK)
                 {
-                    this.ChannelPackedImage.Save(this.SaveFileDialog.FileName, ImageFormat.Jpeg);
+                    this.ChannelPackedImage.Save(this.SaveFileDialog.FileName, ImageFormat.Png);
                 }
             }
             else
